@@ -33,7 +33,7 @@ const Feed = () => {
         next : {revalidate: 40}
       });
       const data = await response.json();
-      setPosts(data)
+      setPosts(data.reverse())
     })()
   },[])
 
