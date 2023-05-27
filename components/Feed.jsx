@@ -29,9 +29,7 @@ const Feed = () => {
   
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/prompt",{
-        next : {revalidate: 40}
-      });
+      const response = await fetch("/api/prompt");
       const data = await response.json();
       setPosts(data.reverse())
     })()
@@ -62,7 +60,7 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <form 
+      <div 
         className="w-full relative flex-center"
       >
         <input 
@@ -72,7 +70,7 @@ const Feed = () => {
           onChange={handleSearchChange}
           className="search_input"
         />
-      </form>
+      </div>
 
       {searchQuery ? (
         <PromptCardList data={searchedResults}/>
