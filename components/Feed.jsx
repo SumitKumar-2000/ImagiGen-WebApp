@@ -29,7 +29,9 @@ const Feed = () => {
   
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/prompt");
+      const response = await fetch("/api/prompt",{
+        next : {revalidate: 40}
+      });
       const data = await response.json();
       setPosts(data)
     })()
@@ -72,10 +74,8 @@ const Feed = () => {
         />
       </form>
 
-       {searchQuery ? (
-        <PromptCardList
-          data={searchedResults}
-        />
+      {searchQuery ? (
+        <PromptCardList data={searchedResults}/>
       ) : (
         <PromptCardList data={posts}/>
       )}
