@@ -9,7 +9,7 @@ const Tag = ({params}) => {
   useEffect(()=>{
     if(params?.tag){
       (async ()=>{
-        const response = await fetch(`http://localhost:3000/api/prompt/tag/${params?.tag}`) 
+        const response = await fetch(`/api/prompt/tag/${params?.tag}`) 
         const data = await response.json();
         setPosts(data);
       })()

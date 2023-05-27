@@ -20,7 +20,7 @@ const UsersProfile = ({params}) => {
   useEffect(()=>{
     if(params?.id){
         (async ()=>{
-            const response = await fetch(`http://localhost:3000/api/users/${params?.id}/posts`);
+            const response = await fetch(`/api/users/${params?.id}/posts`);
             const data = await response.json()
             setPosts(data)
         })()
