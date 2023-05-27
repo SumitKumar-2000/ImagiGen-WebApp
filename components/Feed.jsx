@@ -29,7 +29,9 @@ const Feed = () => {
   
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/prompt");
+      const response = await fetch("/api/prompt", {
+        cache: "no-store"
+      });
       const data = await response.json();
       setPosts(data.reverse())
     })()
