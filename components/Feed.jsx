@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import PromptCard from "./PromptCard"
+import RoundLoader from "./UI Components/RoundLoader"
 
 const PromptCardList = ({data}) => {
   return (
@@ -62,7 +63,7 @@ const Feed = () => {
   };
 
   return (
-    <section className="feed">
+    posts.length !== 0 ? (<section className="feed">
       <div 
         className="w-full relative flex-center"
       >
@@ -80,7 +81,11 @@ const Feed = () => {
       ) : (
         <PromptCardList data={posts}/>
       )}
-    </section>
+    </section>) : (
+      <section className="w-full h-[10rem] flex-center">
+        <RoundLoader/>
+      </section>
+    )
   )
 }
 

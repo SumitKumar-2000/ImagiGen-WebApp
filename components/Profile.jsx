@@ -1,4 +1,5 @@
 import PromptCard from "./PromptCard"
+import RoundLoader from "./UI Components/RoundLoader"
 
 const Profile = ({name, desc, data, handleDeletePost}) => {
   return (
@@ -8,18 +9,24 @@ const Profile = ({name, desc, data, handleDeletePost}) => {
       </h1>
       <p className="desc text-left">{desc}</p>
 
-      <div className="mt-16 prompt_layout">
-      {
-        data.map((post) => (
-            <PromptCard
-              key={post._id}  
-              post={post}
-              handleDeletePost={handleDeletePost}
-            />
+      {data.length !== 0 ? (
+        <div className="mt-16 prompt_layout">
+        {
+          data.map((post) => (
+              <PromptCard
+                key={post._id}  
+                post={post}
+                handleDeletePost={handleDeletePost}
+              />
+            )
           )
-        )
-      }
-      </div>
+        }
+        </div>
+      ) : (
+        <section className="w-full h-[10rem] flex-center">
+          <RoundLoader/>
+        </section>
+      )}
     </section>
   )
 }

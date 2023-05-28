@@ -1,6 +1,7 @@
 'use client'
 
 import PromptCard from "@components/PromptCard"
+import RoundLoader from "@components/UI Components/RoundLoader"
 import { useState, useEffect } from "react"
 
 
@@ -22,17 +23,23 @@ const Tag = ({params}) => {
             #{params?.tag}
         </div>
 
-        <div className="mt-4 md:mt-16 prompt_layout">
-          {
-            posts.map((post) => (
-                <PromptCard
-                  key={post._id}  
-                  post={post}
-                />
+        {posts.length !== 0 ? (
+          <div className="mt-4 md:mt-16 prompt_layout">
+            {
+              posts.map((post) => (
+                  <PromptCard
+                    key={post._id}  
+                    post={post}
+                  />
+                )
               )
-            )
-          }
-        </div>
+            }
+          </div>
+        ) : (
+          <section className="w-full h-[10rem] flex-center">
+            <RoundLoader/>
+          </section>
+        )}
     </div>
 
     
