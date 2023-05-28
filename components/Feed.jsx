@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import PromptCard from "./PromptCard"
 
 const PromptCardList = ({data}) => {
@@ -19,11 +19,21 @@ const PromptCardList = ({data}) => {
   )
 }
 
-const Feed = ({posts}) => {
+const Feed = () => {
+
+  const [posts, setPosts] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+  
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("/api/prompt");
+      const data = await response.json();
+      setPosts(data.reverse())
+    })()
+  },[])
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search

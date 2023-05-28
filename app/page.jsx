@@ -1,20 +1,6 @@
 import Feed from "@components/Feed"
 
-const allPostsDataFetch = async () => {
-  const respsone = await fetch("https://imagi-gen-web-app.vercel.app/api/prompt",{
-    next: {
-      revalidate: 10,
-    }
-  })
-  const data = await respsone.json();
-
-  return data.reverse();
-}
-
-const Home = async () => {
-
-  const posts = await allPostsDataFetch();
-
+const Home = () => {
   return (
     <section className="w-full flex-center flex-col">
         <div className="head_text text-center">
@@ -27,7 +13,7 @@ const Home = async () => {
           Empowering you to discover, create, and share limitless creative prompts.
         </div>
 
-        <Feed posts={posts}/>
+        <Feed/>
     </section>
   )
 }
